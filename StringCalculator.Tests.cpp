@@ -1,64 +1,70 @@
 #include <gtest/gtest.h>
-#include "StringCalculator.h"
+#include "StringCalculator.hpp"
 
+// Test for empty input
 TEST(StringCalculatorAddTests, ExpectZeroForEmptyInput) {
-    int expectedresult = 0;
+    int expectedResult = 0;
     std::string input = "";
-    StringCalculator objUnderTest;
-    int result = objUnderTest.add(input);
+    int result = addNumbers(input);
 
-    ASSERT_EQ(result, expectedresult);
+    ASSERT_EQ(result, expectedResult);
 }
 
+// Test for a single zero
 TEST(StringCalculatorAddTests, ExpectZeroForSingleZero) {
-    int expectedresult = 0;
+    int expectedResult = 0;
     std::string input = "0";
-    StringCalculator objUnderTest;
-    int result = objUnderTest.add(input);
+    int result = addNumbers(input);
 
-    ASSERT_EQ(result, expectedresult);
+    ASSERT_EQ(result, expectedResult);
 }
 
+// Test for the sum of two numbers
 TEST(StringCalculatorAddTests, ExpectSumForTwoNumbers) {
-    int expectedresult = 3;
+    int expectedResult = 3;
     std::string input = "1,2";
-    StringCalculator objUnderTest;
-    int result = objUnderTest.add(input);
+    int result = addNumbers(input);
 
-    ASSERT_EQ(result, expectedresult);
+    ASSERT_EQ(result, expectedResult);
 }
 
-TEST(StringCalculatorAddTests, ExpectExceptionForNegativeNumbers) {
-    ASSERT_THROW({
-        std::string input = "-1,2";
-        StringCalculator objUnderTest;
-       objUnderTest.add(input);
-        }, std::runtime_error);
-}
-
-TEST(StringCalculatorAddTests, ExpectSumWithNewlineDelimiter) {
-    int expectedresult = 6;
-    std::string input = "1\n2,3";
-     StringCalculator objUnderTest;
-    int result =objUnderTest.add(input);
-
-    ASSERT_EQ(result, expectedresult);
-}
-
-TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000) {
-    int expectedresult = 1;
-    std::string input = "1,1001";
-    StringCalculator objUnderTest;
-    int result =objUnderTest.add(input);
-
-    ASSERT_EQ(result, expectedresult);
-}
-
+// Test for the sum with a custom delimiter
 TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
-    int expectedresult = 3;
+    int expectedResult = 3;
     std::string input = "//;\n1;2";
-    StringCalculator objUnderTest;
-    int result = objUnderTest.add(input);
+    int result = addNumbers(input);
 
-    ASSERT_EQ(result, expectedresult);
+    ASSERT_EQ(result, expectedResult);
+}
+
+// Test for handling newline as a delimiter
+TEST(StringCalculatorAddTests, ExpectSumWithNewlineDelimiter) {
+    int expectedResult = 6;
+    std::string input = "1\n2,3";
+    int result = addNumbers(input);
+
+    ASSERT_EQ(result, expectedResult);
+}
+
+// Test for ignoring numbers greater than 1000
+TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000) {
+    int expectedResult = 1;
+    std::string input = "1,1001";
+    int result = addNumbers(input);
+
+    ASSERT_EQ(result, expectedResult);
+}
+
+// Test for exception with negative numbers
+TEST(StringCalculatorAddTests, ExpectExceptionForNegativeNumbers) {
+    std::string input = "-1,2";
+    
+    ASSERT_THROW({
+        try {
+            addNumbers(input);
+        } catch (const std::invalid_argument& err) {
+            EXPECT_EQ(std::string(err.what()), "negatives not allowed: -1");
+            throw;
+        }
+    }, std::invalid_argument);
 }
