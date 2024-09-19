@@ -6,3 +6,5 @@ Test case ID            Test Case Name                        Given Input       
   TC05              ExpectSumWithNewlineDelimiter                  "1\n2,3"                                  6                   Given '1\n2,3', when String Calculator function is invoked, expected result is 6.
   TC06              IgnoreNumbersGreaterThan1000                   "1,1001"                                  1                   Given '1,1001', when String Calculator function is invoked, expected result is 1.
   TC07              ExpectExceptionForNegativeNumbers              "-1,2" (Exception)              negatives not allowed: -1     Given '-1,2' (Exception), when String Calculator function is invoked, expect std::runtime_error.
+  TC08              ExpectSumWithCustomDelimiterOfAnyLength	       "//[***]\n1***2***3"                      6                   Given '//[]\n12***3', when String Calculator function is invoked, expected result is 6.
+  TC09              ExpectSumWithEmptyCustomDelimiter              "//[]\n1,2"                               3                   Given '//[]\n1,2', the result should be 3.
