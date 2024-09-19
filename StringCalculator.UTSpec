@@ -1,10 +1,12 @@
 Test case ID            Test Case Name                        Given Input                            Expected Output             Test Case Description                                     
-  TC01              ExpectZeroForEmptyInput                        ""                                        0                   Given empty string, when String Calculator function is invoked, expected result is 0.
-  TC02              ExpectZeroForSingleZero                        "0"                                       0                   Given '0', when String Calculator function is invoked, expected result is 0.
-  TC03              ExpectSumForTwoNumbers                         "1,2"                                     3                   Given '1,2', when String Calculator function is invoked, expected result is 3.
-  TC04              ExpectSumWithCustomDelimiter                   "//;\n1;2"                                3                   Given '//;\n1;2', when String Calculator function is invoked, expected result is 3.
-  TC05              ExpectSumWithNewlineDelimiter                  "1\n2,3"                                  6                   Given '1\n2,3', when String Calculator function is invoked, expected result is 6.
-  TC06              IgnoreNumbersGreaterThan1000                   "1,1001"                                  1                   Given '1,1001', when String Calculator function is invoked, expected result is 1.
-  TC07              ExpectExceptionForNegativeNumbers              "-1,2" (Exception)              negatives not allowed: -1     Given '-1,2' (Exception), when String Calculator function is invoked, expect std::runtime_error.
-  TC08              ExpectSumWithCustomDelimiterOfAnyLength	       "//[***]\n1***2***3"                      6                   Given '//[]\n12***3', when String Calculator function is invoked, expected result is 6.
-  TC09              ExpectSumWithEmptyCustomDelimiter              "//[]\n1,2"                               3                   Given '//[]\n1,2', the result should be 3.
+  TC01              ExpectZeroForEmptyInput                        ""                                       0                   Given empty string, when String Calculator function is invoked, expected result is 0.
+  TC02              ExpectZeroForSingleZero                        "0"                                      0                   Given '0', when String Calculator function is invoked, expected result is 0.
+  TC03              ExpectSumForTwoNumbers                         "1,2"                                    3                   Given '1,2', when String Calculator function is invoked, expected result is 3.
+  TC04              ExpectSumWithCustomDelimiter                   "//;\n1;2"                               3                   Given '//;\n1;2', when String Calculator function is invoked, expected result is 3.
+  TC05              ExpectSumWithNewlineDelimiter                  "1\n2,3"                                 6                   Given '1\n2,3', when String Calculator function is invoked, expected result is 6.
+  TC06              IgnoreNumbersGreaterThan1000                   "1,1001"                                 1                   Given '1,1001', when String Calculator function is invoked, expected result is 1.
+  TC07              ExpectExceptionForNegativeNumbers              "-1,2" (Exception)              negatives not allowed: -1    Given '-1,2' (Exception), when String Calculator function is invoked, expect std::runtime_error.
+  TC08              ExpectSumWithCustomDelimiterOfAnyLength	       "//[***]\n1***2***3"                     6                   Given '//[]\n12***3', when String Calculator function is invoked, expected result is 6.
+  TC09              ExpectSumWithEmptyCustomDelimiter              "//[]\n1,2"                              3                   Given '//[]\n1,2', the result should be 3.
+  TC10              HandlingInputWithOnlyDelimiters                	"//;\n;;"                               0                   Given '//;\n;;', the result should be 0, with only delimiters and no numbers.
+  TC11              IncludeNumberExactly1000                        "1000"                                 1000                 Given 1000, the result should be 1000, as it is exactly 1000.
